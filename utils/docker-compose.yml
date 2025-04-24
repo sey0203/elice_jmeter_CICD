@@ -1,0 +1,29 @@
+services:  #최상위 네이밍
+  jenkins: #유지보수를 위한 프로그램 선택
+  # 속성값 나열(명세서상 셋팅값, depth 잘 타야함)
+    build:
+      context: . #현재 디렉토리를 의미
+      dockerfile: Dockerfile # 현재 디렉토리에 있는 파일 중 지정
+    container_name: jenkins #도커 컨테이너 네임
+    restart: unless-stopped # 재시작 할거냐 설정
+    ports: #포트넘버 지정
+      - "9000:8080"
+    environment: #내부적인 옵션값 환경설정
+      - JENKINS_OPTS="--httpPort=8080" #변수값 설정
+    volumes: #기본셋팅값이라 새로 컨테이너 생성하면 그대로 따라옴. 변경원하면 삭제 필요
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - C:\Windows\apache-jmeter-5.6.3:/opt/jmeter  # 이 줄을 추가하세요!
+   
+    user: root #유저
+volumes: #depth를 타고 들어가는 설정이 아님
+  jenkins_home:
+
+
+
+# restart 설정 종류
+# no: 재시작하지 않음. 컨테이너가 중지되면 다시 시작되지 않으며, 수동으로 재실행해야 한다.
+# on-failure: 컨테이너가 비정상 종료(에러 코드 반환)된 경우에만 재시작한다.
+# always: 컨테이너가 중지될 경우 항상 재시작하며, 시스템 재부팅 시에도 자동으로 재시작된다.
+# unless-stopped: 수동으로 중지되지 않은 경우 컨테이너를 항상 재시작하며, 시스템 재부팅 시에도 동일하게 동작한다.
