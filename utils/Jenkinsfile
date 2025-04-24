@@ -37,7 +37,7 @@ pipeline {
         stage('Publish Performance Report') {
             steps {
                 perfReport(
-                           sources: "${env.JTL_REPORT_FILE}",
+                           sourceDataFiles: "${env.JTL_REPORT_FILE}",
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5
                     )
