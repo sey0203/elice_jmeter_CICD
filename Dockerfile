@@ -13,6 +13,12 @@ RUN apt-get update && apt-get install -y \
     libappindicator1 libasound2 libatk-bridge2.0-0 libgtk-3-0 \
     xvfb chromium chromium-driver \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y wget unzip openjdk-11-jdk
+RUN mkdir /opt/jmeter && \
+    cd /opt/jmeter && \
+    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz && \
+    tar -xzf apache-jmeter-5.6.3.tgz
+ENV PATH="/opt/jmeter/apache-jmeter-5.6.3/bin:${PATH}"
 
 
 # Chrome & ChromeDriver 자동 설치
