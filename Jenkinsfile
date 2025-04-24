@@ -26,7 +26,7 @@ pipeline {
                     sh """
                         echo "시작"
                         ${env.JMETER_HOME}/bin/jmeter -n \\
-                          -t MyTestPlan.jmx \\
+                          -t Test Plan_0424.jmx \\
                           -l ./results/results.jtl \\ 
                           -e -o ./results/report_output
                     """
