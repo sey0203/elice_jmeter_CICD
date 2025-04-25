@@ -14,7 +14,7 @@ services:  #최상위 네이밍
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
-      - C:\Users\LENOVO\apache-jmeter-5.6.3:/opt/jmeter
+      - C:/Users/LENOVO/apache-jmeter-5.6.3:/opt/jmeter/apache-jmeter-5.6.3
 
    
     user: root #유저
